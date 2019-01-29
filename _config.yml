@@ -1,0 +1,26 @@
+# Site settings
+name: tomorrow00
+email: yushang825@163.com
+author: Wang Shang
+url:
+resume_site:
+github: https://github.com/tomorrow00/
+csdn: https://blog.csdn.net/u013382233
+baseurl: ""
+description: 王尚的个人主页
+meta_description: 个人博客;学而不思则罔;思而不学则殆;生命不止;折腾不休
+motto: It's our wits that make us men.
+# banner: 学而不思则罔，思而不学则殆。
+
+#permalink: /:categories/:year/:month/:day/:title/
+permalink: /:year/:month/:day/:title/
+paginate: 10
+
+exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
+
+github_username: tomorrow00
+
+# Build settings
+markdown: redcarpet
+
+baidu_analysis: 94be4b0f9fc5d94cc0d0415ea6761ae9
