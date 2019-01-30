@@ -1,0 +1,1436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <description>王尚的个人主页</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 30 Jan 2019 13:20:02 +0800</pubDate>
+    <lastBuildDate>Wed, 30 Jan 2019 13:20:02 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>为什么函数下降最快的方向是负梯度方向</title>
+        <description>
+&lt;p&gt;假设我们站在山坡上，想知道怎么下山最快，有一种方法就是在每次下坡都走下坡最快的一步，也就是每一步都走斜率最大的方向，这种方法即为梯度下降法。&lt;/p&gt;
+
+&lt;p&gt;山坡图如下：
+&lt;img src=&quot;/styles/images/blogs/20190118112145962.png&quot; alt=&quot;在这里插入图片描述&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们用函数&lt;script type=&quot;math/tex&quot;&gt;z=f(x,y)&lt;/script&gt;表示山坡，建立三维坐标系，通过一步步推导，找到斜率最大的方向。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;方向导数
+假设下山的方向为 &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; ， &lt;script type=&quot;math/tex&quot;&gt;p(x_0, y_0)&lt;/script&gt; 为&lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt;定义域上的一个点，单位向量&lt;script type=&quot;math/tex&quot;&gt;u=cos\theta i+sin\theta j&lt;/script&gt;，其中&lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;为方向$u$与$x$轴正向的夹角，如下图所示：
+&lt;img src=&quot;/styles/images/blogs/20190118114305454.png&quot; alt=&quot;在这里插入图片描述&quot; /&gt;
+类比导数的定义，我们可以得到$u$方向的斜率：
+&lt;script type=&quot;math/tex&quot;&gt;D_uf=\lim_{t \to 0} \frac {f(x_0+tcos\theta ,y_0+tsin\theta)-f(x_0,y_0)}{t}&lt;/script&gt;
+记为$f$沿$u$方向的方向导数。随着$\theta$的不同，我们可以求出任意方向的方向导数。
+方向导数还可以通过偏微分来表示：&lt;script type=&quot;math/tex&quot;&gt;D_uf=f_x(x,y_0)cos\theta+f_y(x_0,y)sin\theta&lt;/script&gt;假设$\vec A=(f_x(x,y_0),f_y(x_0,y))$，$\vec I=(cos\theta,sin\theta)$，则可得：
+&lt;script type=&quot;math/tex&quot;&gt;D_uf=\vec A\cdot \vec I=\left| \vec A\right|* \left| \vec I\right|cos\alpha&lt;/script&gt;其中$\alpha$为向量$\vec A$与向量$\vec I$的夹角。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;梯度
+函数增大最快的方向，即为导数最大的方向，反之，函数减小最快的方向即为导数最小的方向。
+\
+根据
+&lt;script type=&quot;math/tex&quot;&gt;D_uf=\vec A\cdot \vec I=\left| \vec A\right|* \left| \vec I\right|cos\alpha&lt;/script&gt;当$D_uf$取最大值时，$\alpha$为0，向量$\vec A$与向量$\vec I$同向，此时函数在这个方向的增加最快。
+当$D_uf$取最小值时，$\alpha$为$\pi$，向量$\vec A$与向量$\vec I$犯向，此时函数在这个方向的减小最快。
+\
+向量$\vec A$在点$p(x_0, y_0)$有固定方向，向量$\vec I$不断变化，因此我们定义向量$\vec A$的方向为梯度方向。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;通过以上推导，我们可以知道，梯度的反方向是函数下降最快的方向。&lt;/p&gt;
+
+&lt;p&gt;参考自&lt;a href=&quot;https://zhuanlan.zhihu.com/p/24913912&quot;&gt;知乎&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 18 Jan 2019 22:24:20 +0800</pubDate>
+        <link>http://localhost:4000/2019/01/18/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%87%BD%E6%95%B0%E4%B8%8B%E9%99%8D%E6%9C%80%E5%BF%AB%E7%9A%84%E6%96%B9%E5%90%91%E6%98%AF%E8%B4%9F%E6%A2%AF%E5%BA%A6%E6%96%B9%E5%90%91/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/01/18/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%87%BD%E6%95%B0%E4%B8%8B%E9%99%8D%E6%9C%80%E5%BF%AB%E7%9A%84%E6%96%B9%E5%90%91%E6%98%AF%E8%B4%9F%E6%A2%AF%E5%BA%A6%E6%96%B9%E5%90%91/</guid>
+        
+        <category>算法</category>
+        
+        
+        <category>原创文章</category>
+        
+      </item>
+    
+      <item>
+        <title>PyTorch的自适应池化Adaptive Pooling</title>
+        <description>
+&lt;p&gt;自适应池化Adaptive Pooling是PyTorch含有的一种池化层，在PyTorch的中有六种形式：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;自适应最大池化Adaptive Max Pooling：
+torch.nn.AdaptiveMaxPool1d(output_size)
+torch.nn.AdaptiveMaxPool2d(output_size)
+torch.nn.AdaptiveMaxPool3d(output_size)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;自适应平均池化Adaptive Average Pooling：
+torch.nn.AdaptiveAvgPool1d(output_size)
+torch.nn.AdaptiveAvgPool2d(output_size)
+torch.nn.AdaptiveAvgPool3d(output_size)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;具体可见&lt;a href=&quot;https://pytorch.org/docs/stable/nn.html?highlight=adaptiveavgpool#torch.nn.AdaptiveMaxPool1d&quot;&gt;官方文档&lt;/a&gt;。
+其特殊性在于，输出Tensor的size都是output_size。&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;官方给出的例子：
+&amp;gt;&amp;gt;&amp;gt; # target output size of 5x7
+&amp;gt;&amp;gt;&amp;gt; m = nn.AdaptiveMaxPool2d((5,7))
+&amp;gt;&amp;gt;&amp;gt; input = torch.randn(1, 64, 8, 9)
+&amp;gt;&amp;gt;&amp;gt; output = m(input)
+&amp;gt;&amp;gt;&amp;gt; output.size()
+torch.Size([1, 64, 5, 7])
+
+&amp;gt;&amp;gt;&amp;gt; # target output size of 7x7 (square)
+&amp;gt;&amp;gt;&amp;gt; m = nn.AdaptiveMaxPool2d(7)
+&amp;gt;&amp;gt;&amp;gt; input = torch.randn(1, 64, 10, 9)
+&amp;gt;&amp;gt;&amp;gt; output = m(input)
+&amp;gt;&amp;gt;&amp;gt; output.size()
+torch.Size([1, 64, 7, 7])
+
+&amp;gt;&amp;gt;&amp;gt; # target output size of 10x7
+&amp;gt;&amp;gt;&amp;gt; m = nn.AdaptiveMaxPool2d((None, 7))
+&amp;gt;&amp;gt;&amp;gt; input = torch.randn(1, 64, 10, 9)
+&amp;gt;&amp;gt;&amp;gt; output = m(input)
+&amp;gt;&amp;gt;&amp;gt; output.size()
+torch.Size([1, 64, 10, 7])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;这是因为，Adaptive Pooling的卷积核大小kernel_size由输入input_size和输出output_size决定：kernel_size=(input_size + output_size - 1) / output_size，padding=0，stride=1。&lt;/p&gt;
+
+&lt;p&gt;这样就保证了不管输入Tensor的size是多少，输出Tensor的size都是output_size。&lt;/p&gt;
+</description>
+        <pubDate>Mon, 07 Jan 2019 23:04:29 +0800</pubDate>
+        <link>http://localhost:4000/2019/01/07/PyTorch%E7%9A%84%E8%87%AA%E9%80%82%E5%BA%94%E6%B1%A0%E5%8C%96Adaptive-Pooling/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/01/07/PyTorch%E7%9A%84%E8%87%AA%E9%80%82%E5%BA%94%E6%B1%A0%E5%8C%96Adaptive-Pooling/</guid>
+        
+        <category>深度学习框架</category>
+        
+        
+        <category>原创文章</category>
+        
+      </item>
+    
+      <item>
+        <title>对PyTorch中inplace字段的理解</title>
+        <description>
+&lt;p&gt;例如torch.nn.ReLU(inplace=True)
+inplace=True表示进行原地操作，对上一层传递下来的tensor直接进行修改，如x=x+3；
+inplace=False表示新建一个变量存储操作结果，如y=x+3，x=y；
+inplace=True可以节省运算内存，不用多存储变量。&lt;/p&gt;
+</description>
+        <pubDate>Fri, 04 Jan 2019 10:51:32 +0800</pubDate>
+        <link>http://localhost:4000/2019/01/04/%E5%AF%B9PyTorch%E4%B8%ADinplace%E5%AD%97%E6%AE%B5%E7%9A%84%E7%90%86%E8%A7%A3/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/01/04/%E5%AF%B9PyTorch%E4%B8%ADinplace%E5%AD%97%E6%AE%B5%E7%9A%84%E7%90%86%E8%A7%A3/</guid>
+        
+        <category>深度学习框架</category>
+        
+        
+        <category>原创文章</category>
+        
+      </item>
+    
+      <item>
+        <title>GitHub上传项目</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#1在github主页创建仓库&quot; id=&quot;markdown-toc-1在github主页创建仓库&quot;&gt;1.在GitHub主页创建仓库&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#2移动到项目本地目录下&quot; id=&quot;markdown-toc-2移动到项目本地目录下&quot;&gt;2.移动到项目本地目录下&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#3将项目添加到git管理初始化git&quot; id=&quot;markdown-toc-3将项目添加到git管理初始化git&quot;&gt;3.将项目添加到git管理，初始化git&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#4添加readmemd文件显示在仓库主页&quot; id=&quot;markdown-toc-4添加readmemd文件显示在仓库主页&quot;&gt;4.添加README.md文件，显示在仓库主页&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#5将项目所有文件添加到git&quot; id=&quot;markdown-toc-5将项目所有文件添加到git&quot;&gt;5.将项目所有文件添加到git&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#6查看git状态&quot; id=&quot;markdown-toc-6查看git状态&quot;&gt;6.查看git状态&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#7填写提交信息&quot; id=&quot;markdown-toc-7填写提交信息&quot;&gt;7.填写提交信息&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#8连接github仓库非首次上传可以不用&quot; id=&quot;markdown-toc-8连接github仓库非首次上传可以不用&quot;&gt;8.连接GitHub仓库（非首次上传可以不用）&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#9上传项目到github需要输入账号密码&quot; id=&quot;markdown-toc-9上传项目到github需要输入账号密码&quot;&gt;9.上传项目到GitHub，需要输入账号密码&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;1在github主页创建仓库&quot;&gt;1.在&lt;a href=&quot;https://github.com&quot;&gt;GitHub主页&lt;/a&gt;创建仓库&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;/styles/images/blogs/20190115141114252.png&quot; alt=&quot;在这里插入图片描述&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;2移动到项目本地目录下&quot;&gt;2.移动到项目本地目录下&lt;/h1&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ cd $PROJECT_PATH
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;3将项目添加到git管理初始化git&quot;&gt;3.将项目添加到git管理，初始化git&lt;/h1&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ git init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;4添加readmemd文件显示在仓库主页&quot;&gt;4.添加README.md文件，显示在仓库主页&lt;/h1&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ git add README.md
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;5将项目所有文件添加到git&quot;&gt;5.将项目所有文件添加到git&lt;/h1&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ git add .
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;6查看git状态&quot;&gt;6.查看git状态&lt;/h1&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ git status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;7填写提交信息&quot;&gt;7.填写提交信息&lt;/h1&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ git commit -m &quot;information&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;8连接github仓库非首次上传可以不用&quot;&gt;8.连接GitHub仓库（非首次上传可以不用）&lt;/h1&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ git remote add origin 自己的https地址
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;9上传项目到github需要输入账号密码&quot;&gt;9.上传项目到GitHub，需要输入账号密码&lt;/h1&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ git push -u origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/styles/images/blogs/20190115145745906.png&quot; alt=&quot;在这里插入图片描述&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 15 Nov 2018 15:01:26 +0800</pubDate>
+        <link>http://localhost:4000/2018/11/15/GitHub%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/11/15/GitHub%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE/</guid>
+        
+        <category>使用说明</category>
+        
+        
+        <category>配置文档</category>
+        
+      </item>
+    
+      <item>
+        <title>基于caffe的多标签端到端车牌识别</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#一数据处理&quot; id=&quot;markdown-toc-一数据处理&quot;&gt;&lt;strong&gt;一、数据处理&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#二生成网络结构&quot; id=&quot;markdown-toc-二生成网络结构&quot;&gt;&lt;strong&gt;二、生成网络结构&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#三训练&quot; id=&quot;markdown-toc-三训练&quot;&gt;&lt;strong&gt;三、训练&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#四测试&quot; id=&quot;markdown-toc-四测试&quot;&gt;&lt;strong&gt;四、测试&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;最近利用深度学习框架caffe做了一个端到端车牌识别的模型，所用的网络为AlexNet稍加了一些修改，由于数据集太少、网络结构不完善，效果并没有很好，但是一些基本的思路摸清楚了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;一数据处理&quot;&gt;&lt;strong&gt;一、数据处理&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;所用的数据为EasyPR提供的数据集，共有1541张车牌图片，按照8：1：1的比例分为train、val和test三个数据集。（数据集太少，后期还会用GAN和真实车牌生成数据）&lt;/li&gt;
+  &lt;li&gt;caffe自带的lmdb数据库没有存储多标签数据的功能，所以用hdf5对数据进行存储。车牌共有7个字符，第一个字符为汉字，第二个字符为字母，后面五个字符为数字和字母，所以将标签分为三类：31个汉字标签，24个字母标签，以及34个字母数字标签。&lt;/li&gt;
+  &lt;li&gt;opencv读取的图片为H&lt;em&gt;W&lt;/em&gt;C的形式，根据blob对图片reshape为C&lt;em&gt;H&lt;/em&gt;W维度。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 读取labelmap
+labeldict_Chi = dict()
+labelmap_Chi = open(&quot;labelmap_Chinese.txt&quot;, &quot;r&quot;)
+lines = labelmap_Chi.readlines()
+for line in lines:
+    line = line.strip(&quot;\n&quot;)
+    temp = line.split(&quot; &quot;)
+    labeldict_Chi[temp[1]] = temp[0]
+labelmap_Chi.close()
+
+labeldict_Letter = dict()
+labelmap_Letter = open(&quot;labelmap_Letter.txt&quot;, &quot;r&quot;)
+lines = labelmap_Letter.readlines()
+for line in lines:
+    line = line.strip(&quot;\n&quot;)
+    temp = line.split(&quot; &quot;)
+    labeldict_Letter[temp[1]] = temp[0]
+labelmap_Letter.close()
+
+labeldict_NL = dict()
+labelmap_NL = open(&quot;labelmap_Num&amp;amp;Letter.txt&quot;, &quot;r&quot;)
+lines = labelmap_NL.readlines()
+for line in lines:
+    line = line.strip(&quot;\n&quot;)
+    temp = line.split(&quot; &quot;)
+    labeldict_NL[temp[1]] = temp[0]
+labelmap_NL.close()
+
+for i in range(2):
+    imgs_file = os.listdir(IMG_FILE[i])
+
+    for img_file in imgs_file:
+        filename = os.path.join(IMG_FILE[i], img_file)
+        image = cv2.imread(filename)
+        image = image.reshape(3, 36, 136)
+
+        label = []
+        char_Chi = img_file[:3]
+        label.append(int(labeldict_Chi[char_Chi]))
+        char_Spe = img_file[3:4]
+        label.append(int(labeldict_Letter[char_Spe]))
+        for char in img_file[4:-4]:
+            label.append(int(labeldict_NL[char]))
+
+        IMAGE[i].append(image)
+        LABEL[i].append(np.array(label))
+
+    IMAGE[i] = np.array(IMAGE[i], dtype=int)
+    LABEL[i] = np.array(LABEL[i], dtype=int)
+
+    meanValue = mean(IMAGE[0])
+
+    print &quot;Creating hdf5...&quot;
+    with h5py.File(HDF5_FILE[i], &quot;w&quot;) as h5:
+        data = IMAGE[i].astype(np.float32) - meanValue
+        label = LABEL[i].astype(np.float32)
+        h5[&quot;data&quot;] = data
+        h5[&quot;label&quot;] = label
+        h5.close()
+
+    print &quot;Creating txt...&quot;
+    with open(TXT_FILE[i], &quot;w&quot;) as txt:
+        txt.write(os.path.join(os.getcwd(), HDF5_FILE[i]))
+        txt.close()
+
+np.save(&quot;mean_e2e.npy&quot;, meanValue)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;将图片存入h5文件的时候，需要加上图片的均值，由于caffe计算均值的文件是针对lmdb格式的，所以均值就自己写了一个：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 计算均值
+def mean(images):
+    images = images.astype(np.float32)
+    meanValue = sum(images) / len(images)
+    return meanValue
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;最后要将h5文件读入到一个txt文件里，这个txt文件存储的就是h5文件的路径。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;二生成网络结构&quot;&gt;&lt;strong&gt;二、生成网络结构&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;网络结构使用的是AlexNet结构，对网络结构进行了一些修改：
+    &lt;ul&gt;
+      &lt;li&gt;数据层用的是hdf5数据；&lt;/li&gt;
+      &lt;li&gt;多标签分类，添加了slice层；&lt;/li&gt;
+      &lt;li&gt;最后的输出根据标签数量的不同，输出的特征数有变化。
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;name: &quot;Plate_E2E&quot;
+layer {
+  name: &quot;data&quot;
+  type: &quot;HDF5Data&quot;
+  top: &quot;data&quot;
+  top: &quot;label&quot;
+  include {
+ phase: TRAIN
+  }
+  hdf5_data_param {
+ source: &quot;examples/plate_e2e/train_e2e.txt&quot;
+ batch_size: 10
+  }
+}
+layer {
+  name: &quot;data&quot;
+  type: &quot;HDF5Data&quot;
+  top: &quot;data&quot;
+  top: &quot;label&quot;
+  include {
+ phase: TEST
+  }
+  hdf5_data_param {
+ source: &quot;examples/plate_e2e/val_e2e.txt&quot;
+ batch_size: 10
+  }
+}
+layer {
+  name: &quot;slicers&quot;
+  type: &quot;Slice&quot;
+  bottom: &quot;label&quot;
+  top: &quot;label_1&quot;
+  top: &quot;label_2&quot;
+  top: &quot;label_3&quot;
+  top: &quot;label_4&quot;
+  top: &quot;label_5&quot;
+  top: &quot;label_6&quot;
+  top: &quot;label_7&quot;
+  slice_param {
+ axis: 1
+ slice_point: 1
+ slice_point: 2
+ slice_point: 3
+ slice_point: 4
+ slice_point: 5
+ slice_point: 6
+  }
+}
+layer {
+  name: &quot;conv1&quot;
+  type: &quot;Convolution&quot;
+  bottom: &quot;data&quot;
+  top: &quot;conv1&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  convolution_param {
+ num_output: 96
+ kernel_size: 11
+ stride: 4
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.01
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0
+ }
+  }
+}
+layer {
+  name: &quot;relu1&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;conv1&quot;
+  top: &quot;conv1&quot;
+}
+layer {
+  name: &quot;norm1&quot;
+  type: &quot;LRN&quot;
+  bottom: &quot;conv1&quot;
+  top: &quot;norm1&quot;
+  lrn_param {
+ local_size: 5
+ alpha: 0.0001
+ beta: 0.75
+  }
+}
+layer {
+  name: &quot;pool1&quot;
+  type: &quot;Pooling&quot;
+  bottom: &quot;norm1&quot;
+  top: &quot;pool1&quot;
+  pooling_param {
+ pool: MAX
+ kernel_size: 3
+ stride: 2
+  }
+}
+layer {
+  name: &quot;conv2&quot;
+  type: &quot;Convolution&quot;
+  bottom: &quot;pool1&quot;
+  top: &quot;conv2&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  convolution_param {
+ num_output: 256
+ pad: 2
+ kernel_size: 5
+ group: 2
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.01
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0.1
+ }
+  }
+}
+layer {
+  name: &quot;relu2&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;conv2&quot;
+  top: &quot;conv2&quot;
+}
+layer {
+  name: &quot;norm2&quot;
+  type: &quot;LRN&quot;
+  bottom: &quot;conv2&quot;
+  top: &quot;norm2&quot;
+  lrn_param {
+ local_size: 5
+ alpha: 0.0001
+ beta: 0.75
+  }
+}
+layer {
+  name: &quot;pool2&quot;
+  type: &quot;Pooling&quot;
+  bottom: &quot;norm2&quot;
+  top: &quot;pool2&quot;
+  pooling_param {
+ pool: MAX
+ kernel_size: 3
+ stride: 2
+  }
+}
+layer {
+  name: &quot;conv3&quot;
+  type: &quot;Convolution&quot;
+  bottom: &quot;pool2&quot;
+  top: &quot;conv3&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  convolution_param {
+ num_output: 384
+ pad: 1
+ kernel_size: 3
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.01
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0
+ }
+  }
+}
+layer {
+  name: &quot;relu3&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;conv3&quot;
+  top: &quot;conv3&quot;
+}
+layer {
+  name: &quot;conv4&quot;
+  type: &quot;Convolution&quot;
+  bottom: &quot;conv3&quot;
+  top: &quot;conv4&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  convolution_param {
+ num_output: 384
+ pad: 1
+ kernel_size: 3
+ group: 2
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.01
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0.1
+ }
+  }
+}
+layer {
+  name: &quot;relu4&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;conv4&quot;
+  top: &quot;conv4&quot;
+}
+layer {
+  name: &quot;conv5&quot;
+  type: &quot;Convolution&quot;
+  bottom: &quot;conv4&quot;
+  top: &quot;conv5&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  convolution_param {
+ num_output: 256
+ pad: 1
+ kernel_size: 3
+ group: 2
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.01
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0.1
+ }
+  }
+}
+layer {
+  name: &quot;relu5&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;conv5&quot;
+  top: &quot;conv5&quot;
+}
+layer {
+  name: &quot;fc6&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;conv5&quot;
+  top: &quot;fc6&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 4096
+ weight_filler {
+   type: &quot;gaussian&quot;
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0
+ }
+  }
+}
+layer {
+  name: &quot;relu6&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;fc6&quot;
+  top: &quot;fc6&quot;
+}
+layer {
+  name: &quot;drop6&quot;
+  type: &quot;Dropout&quot;
+  bottom: &quot;fc6&quot;
+  top: &quot;fc6&quot;
+  dropout_param {
+ dropout_ratio: 0.5
+  }
+}
+layer {
+  name: &quot;fc7_1&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;fc6&quot;
+  top: &quot;fc7_1&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 4096
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.005
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0.1
+ }
+  }
+}
+layer {
+  name: &quot;relu7_1&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;fc7_1&quot;
+  top: &quot;fc7_1&quot;
+}
+layer {
+  name: &quot;drop7_1&quot;
+  type: &quot;Dropout&quot;
+  bottom: &quot;fc7_1&quot;
+  top: &quot;fc7_1&quot;
+  dropout_param {
+ dropout_ratio: 0.5
+  }
+}
+layer {
+  name: &quot;fc7_2&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;fc6&quot;
+  top: &quot;fc7_2&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 4096
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.005
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0.1
+ }
+  }
+}
+layer {
+  name: &quot;relu7_2&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;fc7_2&quot;
+  top: &quot;fc7_2&quot;
+}
+layer {
+  name: &quot;drop7_2&quot;
+  type: &quot;Dropout&quot;
+  bottom: &quot;fc7_2&quot;
+  top: &quot;fc7_2&quot;
+  dropout_param {
+ dropout_ratio: 0.5
+  }
+}
+layer {
+  name: &quot;fc7_3&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;fc6&quot;
+  top: &quot;fc7_3&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 4096
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.005
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0.1
+ }
+  }
+}
+layer {
+  name: &quot;relu7_3&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;fc7_3&quot;
+  top: &quot;fc7_3&quot;
+}
+layer {
+  name: &quot;drop7_3&quot;
+  type: &quot;Dropout&quot;
+  bottom: &quot;fc7_3&quot;
+  top: &quot;fc7_3&quot;
+  dropout_param {
+ dropout_ratio: 0.5
+  }
+}
+layer {
+  name: &quot;fc7_4&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;fc6&quot;
+  top: &quot;fc7_4&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 4096
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.005
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0.1
+ }
+  }
+}
+layer {
+  name: &quot;relu7_4&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;fc7_4&quot;
+  top: &quot;fc7_4&quot;
+}
+layer {
+  name: &quot;drop7_4&quot;
+  type: &quot;Dropout&quot;
+  bottom: &quot;fc7_4&quot;
+  top: &quot;fc7_4&quot;
+  dropout_param {
+ dropout_ratio: 0.5
+  }
+}
+layer {
+  name: &quot;fc7_5&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;fc6&quot;
+  top: &quot;fc7_5&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 4096
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.005
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0.1
+ }
+  }
+}
+layer {
+  name: &quot;relu7_5&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;fc7_5&quot;
+  top: &quot;fc7_5&quot;
+}
+layer {
+  name: &quot;drop7_5&quot;
+  type: &quot;Dropout&quot;
+  bottom: &quot;fc7_5&quot;
+  top: &quot;fc7_5&quot;
+  dropout_param {
+ dropout_ratio: 0.5
+  }
+}
+layer {
+  name: &quot;fc7_6&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;fc6&quot;
+  top: &quot;fc7_6&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 4096
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.005
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0.1
+ }
+  }
+}
+layer {
+  name: &quot;relu7_6&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;fc7_6&quot;
+  top: &quot;fc7_6&quot;
+}
+layer {
+  name: &quot;drop7_6&quot;
+  type: &quot;Dropout&quot;
+  bottom: &quot;fc7_6&quot;
+  top: &quot;fc7_6&quot;
+  dropout_param {
+ dropout_ratio: 0.5
+  }
+}
+layer {
+  name: &quot;fc7_7&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;fc6&quot;
+  top: &quot;fc7_7&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 4096
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.005
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0.1
+ }
+  }
+}
+layer {
+  name: &quot;relu7_7&quot;
+  type: &quot;ReLU&quot;
+  bottom: &quot;fc7_7&quot;
+  top: &quot;fc7_7&quot;
+}
+layer {
+  name: &quot;drop7_7&quot;
+  type: &quot;Dropout&quot;
+  bottom: &quot;fc7_7&quot;
+  top: &quot;fc7_7&quot;
+  dropout_param {
+ dropout_ratio: 0.5
+  }
+}
+layer {
+  name: &quot;fc8_1&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;fc7_1&quot;
+  top: &quot;fc8_1&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 31
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.01
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0
+ }
+  }
+}
+layer {
+  name: &quot;fc8_2&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;fc7_2&quot;
+  top: &quot;fc8_2&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 24
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.01
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0
+ }
+  }
+}
+layer {
+  name: &quot;fc8_3&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;fc7_3&quot;
+  top: &quot;fc8_3&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 34
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.01
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0
+ }
+  }
+}
+layer {
+  name: &quot;fc8_4&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;fc7_4&quot;
+  top: &quot;fc8_4&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 34
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.01
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0
+ }
+  }
+}
+layer {
+  name: &quot;fc8_5&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;fc7_5&quot;
+  top: &quot;fc8_5&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 34
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.01
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0
+ }
+  }
+}
+layer {
+  name: &quot;fc8_6&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;fc7_6&quot;
+  top: &quot;fc8_6&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 34
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.01
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0
+ }
+  }
+}
+layer {
+  name: &quot;fc8_7&quot;
+  type: &quot;InnerProduct&quot;
+  bottom: &quot;fc7_7&quot;
+  top: &quot;fc8_7&quot;
+  param {
+ lr_mult: 1
+ decay_mult: 1
+  }
+  param {
+ lr_mult: 2
+ decay_mult: 0
+  }
+  inner_product_param {
+ num_output: 34
+ weight_filler {
+   type: &quot;gaussian&quot;
+   std: 0.01
+ }
+ bias_filler {
+   type: &quot;constant&quot;
+   value: 0
+ }
+  }
+}
+layer {
+  name: &quot;accuracy_1&quot;
+  type: &quot;Accuracy&quot;
+  bottom: &quot;fc8_1&quot;
+  bottom: &quot;label_1&quot;
+  top: &quot;accuracy_1&quot;
+  include {
+ phase: TEST
+  }
+}
+layer {
+  name: &quot;accuracy_2&quot;
+  type: &quot;Accuracy&quot;
+  bottom: &quot;fc8_2&quot;
+  bottom: &quot;label_2&quot;
+  top: &quot;accuracy_2&quot;
+  include {
+ phase: TEST
+  }
+}
+layer {
+  name: &quot;accuracy_3&quot;
+  type: &quot;Accuracy&quot;
+  bottom: &quot;fc8_3&quot;
+  bottom: &quot;label_3&quot;
+  top: &quot;accuracy_3&quot;
+  include {
+ phase: TEST
+  }
+}
+layer {
+  name: &quot;accuracy_4&quot;
+  type: &quot;Accuracy&quot;
+  bottom: &quot;fc8_4&quot;
+  bottom: &quot;label_4&quot;
+  top: &quot;accuracy_4&quot;
+  include {
+ phase: TEST
+  }
+}
+layer {
+  name: &quot;accuracy_5&quot;
+  type: &quot;Accuracy&quot;
+  bottom: &quot;fc8_5&quot;
+  bottom: &quot;label_5&quot;
+  top: &quot;accuracy_5&quot;
+  include {
+ phase: TEST
+  }
+}
+layer {
+  name: &quot;accuracy_6&quot;
+  type: &quot;Accuracy&quot;
+  bottom: &quot;fc8_6&quot;
+  bottom: &quot;label_6&quot;
+  top: &quot;accuracy_6&quot;
+  include {
+ phase: TEST
+  }
+}
+layer {
+  name: &quot;accuracy_7&quot;
+  type: &quot;Accuracy&quot;
+  bottom: &quot;fc8_7&quot;
+  bottom: &quot;label_7&quot;
+  top: &quot;accuracy_7&quot;
+  include {
+ phase: TEST
+  }
+}
+layer {
+  name: &quot;loss_1&quot;
+  type: &quot;SoftmaxWithLoss&quot;
+  bottom: &quot;fc8_1&quot;
+  bottom: &quot;label_1&quot;
+  top: &quot;loss_1&quot;
+  loss_weight: 0.2
+}
+layer {
+  name: &quot;loss_2&quot;
+  type: &quot;SoftmaxWithLoss&quot;
+  bottom: &quot;fc8_2&quot;
+  bottom: &quot;label_2&quot;
+  top: &quot;loss_2&quot;
+  loss_weight: 0.2
+}
+layer {
+  name: &quot;loss_3&quot;
+  type: &quot;SoftmaxWithLoss&quot;
+  bottom: &quot;fc8_3&quot;
+  bottom: &quot;label_3&quot;
+  top: &quot;loss_3&quot;
+  loss_weight: 0.2
+}
+layer {
+  name: &quot;loss_4&quot;
+  type: &quot;SoftmaxWithLoss&quot;
+  bottom: &quot;fc8_4&quot;
+  bottom: &quot;label_4&quot;
+  top: &quot;loss_4&quot;
+  loss_weight: 0.2
+}
+layer {
+  name: &quot;loss_5&quot;
+  type: &quot;SoftmaxWithLoss&quot;
+  bottom: &quot;fc8_5&quot;
+  bottom: &quot;label_5&quot;
+  top: &quot;loss_5&quot;
+  loss_weight: 0.2
+}
+layer {
+  name: &quot;loss_6&quot;
+  type: &quot;SoftmaxWithLoss&quot;
+  bottom: &quot;fc8_6&quot;
+  bottom: &quot;label_6&quot;
+  top: &quot;loss_6&quot;
+  loss_weight: 0.2
+}
+layer {
+  name: &quot;loss_7&quot;
+  type: &quot;SoftmaxWithLoss&quot;
+  bottom: &quot;fc8_7&quot;
+  bottom: &quot;label_7&quot;
+  top: &quot;loss_7&quot;
+  loss_weight: 0.2
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;有两个问题需要总结下：
+    &lt;ul&gt;
+      &lt;li&gt;AlexNet在conv5之后又一个pool5层，但是到conv5之后，图片的边界已经不足以再做池化，所以去掉了pool5层；&lt;/li&gt;
+      &lt;li&gt;第一次训练的时候忘记修改最后fc层输出的num_output参数，导致特征分类出现问题。七个fc层的num_output分别是31、24、34、34、34、34、34，分别对应各自标签的类别。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;solver修改为如下所示，再修改相应的deploy网络结构，就可以开始训练了。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;net: &quot;examples/plate_e2e/train_val_e2e.prototxt&quot;
+test_iter: 130
+test_interval: 100
+base_lr: 0.001
+lr_policy: &quot;step&quot;
+gamma: 0.1
+stepsize: 3000
+display: 10
+max_iter: 15000
+momentum: 0.9
+weight_decay: 0.0005
+snapshot: 3000
+snapshot_prefix: &quot;examples/plate_e2e/plate_e2e&quot;
+solver_mode: GPU
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;三训练&quot;&gt;&lt;strong&gt;三、训练&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/env sh&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;TOOLS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;./build/tools
+
+&lt;span class=&quot;nv&quot;&gt;$TOOLS&lt;/span&gt;/caffe train &lt;span class=&quot;nt&quot;&gt;--solver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;examples/plate_e2e/solver_e2e.prototxt &lt;span class=&quot;nt&quot;&gt;-gpu&lt;/span&gt; all
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;四测试&quot;&gt;&lt;strong&gt;四、测试&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def Test(img):
+    # 加载模型
+    net = caffe.Net(deploy, caffe_model, caffe.TEST)
+
+    # 注意可以调节预处理批次的大小
+    # 由于是处理一张图片，所以把原来的10张的批次改为1
+    net.blobs['data'].reshape(1, 3, 36, 136)
+
+    # 加载图片到数据层
+    im = cv2.imread(img)
+    images = np.array([im.reshape(3, 36, 136)], dtype=np.float32)
+    meanValue = mean()
+    net.blobs['data'].data[...] =  images - meanValue
+
+    # 前向计算
+    out = net.forward()
+
+    # 预测分类
+    result = []
+    result.append(out['prob_1'].argmax())
+    result.append(out['prob_2'].argmax())
+    result.append(out['prob_3'].argmax())
+    result.append(out['prob_4'].argmax())
+    result.append(out['prob_5'].argmax())
+    result.append(out['prob_6'].argmax())
+    result.append(out['prob_7'].argmax())
+
+    return result
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;最后的测试结果并不好，还需要对网络结构进行修改和构建，数据集也需要重新扩充，后期会进行更新。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Wed, 20 Dec 2017 11:49:42 +0800</pubDate>
+        <link>http://localhost:4000/2017/12/20/%E5%9F%BA%E4%BA%8Ecaffe%E7%9A%84%E5%A4%9A%E6%A0%87%E7%AD%BE%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%BD%A6%E7%89%8C%E8%AF%86%E5%88%AB/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/12/20/%E5%9F%BA%E4%BA%8Ecaffe%E7%9A%84%E5%A4%9A%E6%A0%87%E7%AD%BE%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%BD%A6%E7%89%8C%E8%AF%86%E5%88%AB/</guid>
+        
+        <category>应用</category>
+        
+        
+        <category>原创文章</category>
+        
+      </item>
+    
+      <item>
+        <title>Ubuntu上搭建GPU服务器</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#1安装显卡驱动&quot; id=&quot;markdown-toc-1安装显卡驱动&quot;&gt;1.安装显卡驱动&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#2安装cuda&quot; id=&quot;markdown-toc-2安装cuda&quot;&gt;2.安装CUDA&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#3安装cudnn&quot; id=&quot;markdown-toc-3安装cudnn&quot;&gt;3.安装cuDNN&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;h1 id=&quot;1安装显卡驱动&quot;&gt;1.安装显卡驱动&lt;/h1&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;下载：&lt;/p&gt;
+
+    &lt;p&gt;根据显卡类型以及操作系统，选定CUDA版本和语言设置，下载对应的显卡驱动。
+ &lt;img src=&quot;/styles/images/blogs/20190109002143528.jpeg&quot; alt=&quot;在这里插入图片描述&quot; /&gt;
+&lt;a href=&quot;https://www.nvidia.cn/Download/index.aspx?lang=cn&quot;&gt;    驱动下载地址&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ sudo ./NVIDIA-Linux-xxxxxx.run –no-opengl-files –no-x-check&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;注：&lt;/p&gt;
+
+    &lt;p&gt;1）选用下载的驱动名替代上述驱动名称；
+ 2）–no-opengl-files：表示只安装驱动文件，不安装OpenGL文件。这个参数不可省略，否则会导致登陆界面死循环；&lt;/p&gt;
+
+    &lt;p&gt;3）–no-x-check：表示安装驱动时不检查X服务，建议使用。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;验证&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ nvidia-smi&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/styles/images/blogs/20190109002903182.jpeg&quot; alt=&quot;在这里插入图片描述&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;出现此图表示安装成功。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;h1 id=&quot;2安装cuda&quot;&gt;2.安装CUDA&lt;/h1&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;下载：&lt;/p&gt;
+
+    &lt;p&gt;选定CUDA版本，根据操作系统及相应的版本配置安装CUDA。官网附带具体安装说明。
+ &lt;img src=&quot;/styles/images/blogs/201901090030455.jpeg&quot; alt=&quot;在这里插入图片描述&quot; /&gt;
+ &lt;a href=&quot;https://developer.nvidia.com/cuda-toolkit-archive&quot;&gt;CUDA下载地址&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ sudo sh cuda_10.0.130_410.48_linux.run&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;CUDA Sample测试：&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; #编译并测试设备 deviceQuery：
+ $ cd /usr/local/cuda-8.0/samples/1_Utilities/deviceQuery
+ $ sudo make
+ $ ./deviceQuery
+
+ #编译并测试带宽 bandwidthTest：
+ $ cd ../bandwidthTest
+ $ sudo make
+ $./bandwidthTest
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;如果这两个测试的最后结果都是Result = PASS，说明CUDA安装成功。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;h1 id=&quot;3安装cudnn&quot;&gt;3.安装cuDNN&lt;/h1&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;下载：&lt;/p&gt;
+
+    &lt;p&gt;根据CUDA版本，选择相应的cuDNN下载并安装（需要NVIDIA账号登陆）。&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/styles/images/blogs/20190109003902252.jpeg&quot; alt=&quot;在这里插入图片描述&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;https://developer.nvidia.com/cudnn&quot;&gt;cuDNN下载地址&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装：&lt;/p&gt;
+
+    &lt;p&gt;cuDNN安装包为Tar文件：&lt;/p&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ tar -xzvf cudnn-9.0-linux-x64-v7.tgz
+ $ sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+ $ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+ $ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;cuDNN安装包为Debian文件：&lt;/p&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 安装运行库：
+ $ sudo dpkg -i libcudnn7_7.0.3.11-1+cuda9.0_amd64.deb`
+ 安装开发者库：`
+ $ sudo dpkg -i libcudnn7-dev_7.0.3.11-1+cuda9.0_amd64.deb`
+ 安装样例以及用户指南：
+ $ sudo dpkg -i libcudnn7-doc_7.0.3.11-1+cuda9.0_amd64.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;&lt;a href=&quot;https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html#install-linux&quot;&gt;安装文档地址&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;cuDNN样例测试：&lt;/p&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 将cuDNN样例拷贝到一个可操作目录下：
+ $ cp -r /usr/src/cudnn_samples_v7/ $HOME
+ 进入该目录：
+ $ cd $HOME/cudnn_samples_v7/mnistCUDNN
+ 编译mnistCUDNN样例：
+ $ make clean &amp;amp;&amp;amp; make
+ 运行mnistCUDNN样例：
+ $ ./mnistCUDNN
+ 若出现以下情况，则说明cuDNN已经安装完成。
+ Test passed!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 02 Dec 2017 20:05:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/12/02/Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAGPU%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/12/02/Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAGPU%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+        
+        <category>环境搭建</category>
+        
+        
+        <category>配置文档</category>
+        
+      </item>
+    
+      <item>
+        <title>Welcome to Jekyll!</title>
+        <description></description>
+        <pubDate>Mon, 17 Nov 2014 13:31:01 +0800</pubDate>
+        <link>http://localhost:4000/2014/11/17/welcome-to-jekyll/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/11/17/welcome-to-jekyll/</guid>
+        
+        <category>Welcome</category>
+        
+        
+        <category>Welcome</category>
+        
+      </item>
+    
+  </channel>
+</rss>

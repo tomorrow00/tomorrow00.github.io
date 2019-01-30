@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		
+			为什么函数下降最快的方向是负梯度方向 - 
+		
+		tomorrow00
+	</title>
+
+	<!-- <link rel="shortcut icon" href="/styles/images/favicon.png">
+	<link rel="icon" href="/styles/images/favicon.png"> -->
+	<link rel="shortcut icon" href="http://www.github.com/favicon.ico">
+	<link rel="icon" href="http://www.github.com/favicon.ico">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<!-- <link rel="canonical" href="/2019/01/18/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%87%BD%E6%95%B0%E4%B8%8B%E9%99%8D%E6%9C%80%E5%BF%AB%E7%9A%84%E6%96%B9%E5%90%91%E6%98%AF%E8%B4%9F%E6%A2%AF%E5%BA%A6%E6%96%B9%E5%90%91/">
+	<link rel="alternate" type="application/rss+xml" title="tomorrow00" href="/feed.xml"> -->
+
+	<meta name="keywords" content="为什么函数下降最快的方向是负梯度方向, tomorrow00, 个人博客;学而不思则罔;思而不学则殆;生命不止;折腾不休">
+	<meta name="description" content="个人博客;学而不思则罔;思而不学则殆;生命不止;折腾不休">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?94be4b0f9fc5d94cc0d0415ea6761ae9";
+		  var s = document.getElementsByTagName("script")[0];
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/">主页</a>
+        </li>
+        <li>
+          <a href="/categories">分类</a>
+        </li>
+        <li>
+          <a href="/tag">标签</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">帮助<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/tomorrow00/">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="https://blog.csdn.net/u013382233">CSDN</a></li>
+            <!-- <li><a rel="nofollow" target="_blank" href="/">关于作者</a></li> -->
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">项目模板</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+      <h1>为什么函数下降最快的方向是负梯度方向</h1>
+      
+        <p>Post on Jan 18, 2019, by <a href="/about">Wang Shang</a></p>
+      
+    
+  </div>
+</div>
+
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#原创文章-ref">原创文章</a>	/
+    	<a href="/tag/#算法-ref">算法</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">为什么函数下降最快的方向是负梯度方向</h1>
+              <!--
+                <p class="post-meta">Jan 18, 2019</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Jan 18, 2019</span> By <a target="_blank" href="http://localhost:4000">Wang Shang</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              
+<p>假设我们站在山坡上，想知道怎么下山最快，有一种方法就是在每次下坡都走下坡最快的一步，也就是每一步都走斜率最大的方向，这种方法即为梯度下降法。</p>
+
+<p>山坡图如下：
+<img src="/styles/images/blogs/20190118112145962.png" alt="在这里插入图片描述" /></p>
+
+<p>我们用函数<script type="math/tex">z=f(x,y)</script>表示山坡，建立三维坐标系，通过一步步推导，找到斜率最大的方向。</p>
+
+<ul>
+  <li>
+    <p>方向导数
+假设下山的方向为 <script type="math/tex">u</script> ， <script type="math/tex">p(x_0, y_0)</script> 为<script type="math/tex">z</script>定义域上的一个点，单位向量<script type="math/tex">u=cos\theta i+sin\theta j</script>，其中<script type="math/tex">\theta</script>为方向$u$与$x$轴正向的夹角，如下图所示：
+<img src="/styles/images/blogs/20190118114305454.png" alt="在这里插入图片描述" />
+类比导数的定义，我们可以得到$u$方向的斜率：
+<script type="math/tex">D_uf=\lim_{t \to 0} \frac {f(x_0+tcos\theta ,y_0+tsin\theta)-f(x_0,y_0)}{t}</script>
+记为$f$沿$u$方向的方向导数。随着$\theta$的不同，我们可以求出任意方向的方向导数。
+方向导数还可以通过偏微分来表示：<script type="math/tex">D_uf=f_x(x,y_0)cos\theta+f_y(x_0,y)sin\theta</script>假设$\vec A=(f_x(x,y_0),f_y(x_0,y))$，$\vec I=(cos\theta,sin\theta)$，则可得：
+<script type="math/tex">D_uf=\vec A\cdot \vec I=\left| \vec A\right|* \left| \vec I\right|cos\alpha</script>其中$\alpha$为向量$\vec A$与向量$\vec I$的夹角。</p>
+  </li>
+  <li>
+    <p>梯度
+函数增大最快的方向，即为导数最大的方向，反之，函数减小最快的方向即为导数最小的方向。
+\
+根据
+<script type="math/tex">D_uf=\vec A\cdot \vec I=\left| \vec A\right|* \left| \vec I\right|cos\alpha</script>当$D_uf$取最大值时，$\alpha$为0，向量$\vec A$与向量$\vec I$同向，此时函数在这个方向的增加最快。
+当$D_uf$取最小值时，$\alpha$为$\pi$，向量$\vec A$与向量$\vec I$犯向，此时函数在这个方向的减小最快。
+\
+向量$\vec A$在点$p(x_0, y_0)$有固定方向，向量$\vec I$不断变化，因此我们定义向量$\vec A$的方向为梯度方向。</p>
+  </li>
+</ul>
+
+<p>通过以上推导，我们可以知道，梯度的反方向是函数下降最快的方向。</p>
+
+<p>参考自<a href="https://zhuanlan.zhihu.com/p/24913912">知乎</a></p>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<!-- <p class="copyright">Copyright &copy; 2014-2019 <a href="/"><code>Wang Shang</code></a>.</p> -->
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		
+			对PyTorch中inplace字段的理解 - 
+		
+		tomorrow00
+	</title>
+
+	<!-- <link rel="shortcut icon" href="/styles/images/favicon.png">
+	<link rel="icon" href="/styles/images/favicon.png"> -->
+	<link rel="shortcut icon" href="http://www.github.com/favicon.ico">
+	<link rel="icon" href="http://www.github.com/favicon.ico">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<!-- <link rel="canonical" href="/2019/01/04/%E5%AF%B9PyTorch%E4%B8%ADinplace%E5%AD%97%E6%AE%B5%E7%9A%84%E7%90%86%E8%A7%A3/">
+	<link rel="alternate" type="application/rss+xml" title="tomorrow00" href="/feed.xml"> -->
+
+	<meta name="keywords" content="对PyTorch中inplace字段的理解, tomorrow00, 个人博客;学而不思则罔;思而不学则殆;生命不止;折腾不休">
+	<meta name="description" content="个人博客;学而不思则罔;思而不学则殆;生命不止;折腾不休">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?94be4b0f9fc5d94cc0d0415ea6761ae9";
+		  var s = document.getElementsByTagName("script")[0];
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/">主页</a>
+        </li>
+        <li>
+          <a href="/categories">分类</a>
+        </li>
+        <li>
+          <a href="/tag">标签</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">帮助<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/tomorrow00/">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="https://blog.csdn.net/u013382233">CSDN</a></li>
+            <!-- <li><a rel="nofollow" target="_blank" href="/">关于作者</a></li> -->
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">项目模板</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+      <h1>对PyTorch中inplace字段的理解</h1>
+      
+        <p>Post on Jan 04, 2019, by <a href="/about">Wang Shang</a></p>
+      
+    
+  </div>
+</div>
+
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#原创文章-ref">原创文章</a>	/
+    	<a href="/tag/#深度学习框架-ref">深度学习框架</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">对PyTorch中inplace字段的理解</h1>
+              <!--
+                <p class="post-meta">Jan 4, 2019</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Jan 04, 2019</span> By <a target="_blank" href="http://localhost:4000">Wang Shang</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              
+<p>例如torch.nn.ReLU(inplace=True)
+inplace=True表示进行原地操作，对上一层传递下来的tensor直接进行修改，如x=x+3；
+inplace=False表示新建一个变量存储操作结果，如y=x+3，x=y；
+inplace=True可以节省运算内存，不用多存储变量。</p>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<!-- <p class="copyright">Copyright &copy; 2014-2019 <a href="/"><code>Wang Shang</code></a>.</p> -->
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+  </body>
+
+</html>

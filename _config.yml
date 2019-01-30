@@ -3,7 +3,7 @@ name: tomorrow00
 email: yushang825@163.com
 author: Wang Shang
 url:
-resume_site:
+resume_site: /
 github: https://github.com/tomorrow00/
 csdn: https://blog.csdn.net/u013382233
 baseurl: ""
@@ -21,6 +21,7 @@ exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
 github_username: tomorrow00
 
 # Build settings
-markdown: redcarpet
+markdown: kramdown
+# markdown: redcarpet
 
 baidu_analysis: 94be4b0f9fc5d94cc0d0415ea6761ae9

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		
+			Ubuntu上搭建GPU服务器 - 
+		
+		tomorrow00
+	</title>
+
+	<!-- <link rel="shortcut icon" href="/styles/images/favicon.png">
+	<link rel="icon" href="/styles/images/favicon.png"> -->
+	<link rel="shortcut icon" href="http://www.github.com/favicon.ico">
+	<link rel="icon" href="http://www.github.com/favicon.ico">
+
+	<link rel="stylesheet" href="/styles/css/index.css">
+	<link rel="stylesheet" href="/styles/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/styles/css/syntax.css">
+	<!-- <link rel="canonical" href="/2017/12/02/Ubuntu%E4%B8%8A%E6%90%AD%E5%BB%BAGPU%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+	<link rel="alternate" type="application/rss+xml" title="tomorrow00" href="/feed.xml"> -->
+
+	<meta name="keywords" content="Ubuntu上搭建GPU服务器, tomorrow00, 个人博客;学而不思则罔;思而不学则殆;生命不止;折腾不休">
+	<meta name="description" content="个人博客;学而不思则罔;思而不学则殆;生命不止;折腾不休">
+
+	<script src="/styles/js/jquery.min.js"></script>
+	<!--[if lt IE 9]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?94be4b0f9fc5d94cc0d0415ea6761ae9";
+		  var s = document.getElementsByTagName("script")[0];
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+  	<style type="text/css">
+	  	.docs-content{
+	  		margin-bottom: 10px;
+	  	}
+  	</style>
+</head>
+
+
+  <body class="index">
+
+    <header class="navbar navbar-inverse navbar-fixed-top docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/">主页</a>
+        </li>
+        <li>
+          <a href="/categories">分类</a>
+        </li>
+        <li>
+          <a href="/tag">标签</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">帮助<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a rel="nofollow" target="_blank" href="https://github.com/tomorrow00/">Github</a></li>
+            <li><a rel="nofollow" target="_blank" href="https://blog.csdn.net/u013382233">CSDN</a></li>
+            <!-- <li><a rel="nofollow" target="_blank" href="/">关于作者</a></li> -->
+            <li class="divider"></li>
+            <li><a rel="nofollow" target="_blank" href="https://github.com/luoyan35714/LessOrMore.git">项目模板</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+    <div class="docs-header" id="content">
+  <div class="container">
+  	
+      <h1>Ubuntu上搭建GPU服务器</h1>
+      
+        <p>Post on Dec 02, 2017, by <a href="/about">Wang Shang</a></p>
+      
+    
+  </div>
+</div>
+
+    
+      
+<div class="banner">
+  <div class="container">
+  	
+    	<a href="/categories/#配置文档-ref">配置文档</a>	/
+    	<a href="/tag/#环境搭建-ref">环境搭建</a>
+    
+  </div>
+</div>
+
+    
+
+    <div class="container docs-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar hidden-print" role="complementary">
+        <div id="navigation">
+  <h1>目录</h1>
+  <ul class="nav sidenav">
+  </ul>
+  <div style="height: 200px;width: 200px;">
+    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"> 
+    </script>
+  </div>
+</div>
+ 
+      </div>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+            <header class="post-header">
+              <h1 class="post-title">Ubuntu上搭建GPU服务器</h1>
+              <!--
+                <p class="post-meta">Dec 2, 2017</p>
+              -->
+              <div class="meta">Posted on <span class="postdate">Dec 02, 2017</span> By <a target="_blank" href="http://localhost:4000">Wang Shang</a></div>
+              <br />
+            </header>
+            <article class="post-content">
+              <ul id="markdown-toc">
+  <li><a href="#1安装显卡驱动" id="markdown-toc-1安装显卡驱动">1.安装显卡驱动</a></li>
+  <li><a href="#2安装cuda" id="markdown-toc-2安装cuda">2.安装CUDA</a></li>
+  <li><a href="#3安装cudnn" id="markdown-toc-3安装cudnn">3.安装cuDNN</a></li>
+</ul>
+
+<blockquote>
+  <h1 id="1安装显卡驱动">1.安装显卡驱动</h1>
+</blockquote>
+
+<ul>
+  <li>
+    <p>下载：</p>
+
+    <p>根据显卡类型以及操作系统，选定CUDA版本和语言设置，下载对应的显卡驱动。
+ <img src="/styles/images/blogs/20190109002143528.jpeg" alt="在这里插入图片描述" />
+<a href="https://www.nvidia.cn/Download/index.aspx?lang=cn">    驱动下载地址</a></p>
+  </li>
+  <li>
+    <p>安装</p>
+
+    <p><code class="highlighter-rouge">$ sudo ./NVIDIA-Linux-xxxxxx.run –no-opengl-files –no-x-check</code></p>
+
+    <p>注：</p>
+
+    <p>1）选用下载的驱动名替代上述驱动名称；
+ 2）–no-opengl-files：表示只安装驱动文件，不安装OpenGL文件。这个参数不可省略，否则会导致登陆界面死循环；</p>
+
+    <p>3）–no-x-check：表示安装驱动时不检查X服务，建议使用。</p>
+  </li>
+  <li>
+    <p>验证</p>
+
+    <p><code class="highlighter-rouge">$ nvidia-smi</code></p>
+
+    <p><img src="/styles/images/blogs/20190109002903182.jpeg" alt="在这里插入图片描述" /></p>
+
+    <p>出现此图表示安装成功。</p>
+  </li>
+</ul>
+
+<blockquote>
+  <h1 id="2安装cuda">2.安装CUDA</h1>
+</blockquote>
+
+<ul>
+  <li>
+    <p>下载：</p>
+
+    <p>选定CUDA版本，根据操作系统及相应的版本配置安装CUDA。官网附带具体安装说明。
+ <img src="/styles/images/blogs/201901090030455.jpeg" alt="在这里插入图片描述" />
+ <a href="https://developer.nvidia.com/cuda-toolkit-archive">CUDA下载地址</a></p>
+  </li>
+  <li>
+    <p>安装</p>
+
+    <p><code class="highlighter-rouge">$ sudo sh cuda_10.0.130_410.48_linux.run</code></p>
+  </li>
+  <li>
+    <p>CUDA Sample测试：</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> #编译并测试设备 deviceQuery：
+ $ cd /usr/local/cuda-8.0/samples/1_Utilities/deviceQuery
+ $ sudo make
+ $ ./deviceQuery
+
+ #编译并测试带宽 bandwidthTest：
+ $ cd ../bandwidthTest
+ $ sudo make
+ $./bandwidthTest
+</code></pre></div>    </div>
+
+    <p>如果这两个测试的最后结果都是Result = PASS，说明CUDA安装成功。</p>
+  </li>
+</ul>
+
+<blockquote>
+  <h1 id="3安装cudnn">3.安装cuDNN</h1>
+</blockquote>
+
+<ul>
+  <li>
+    <p>下载：</p>
+
+    <p>根据CUDA版本，选择相应的cuDNN下载并安装（需要NVIDIA账号登陆）。</p>
+
+    <p><img src="/styles/images/blogs/20190109003902252.jpeg" alt="在这里插入图片描述" /></p>
+
+    <p><a href="https://developer.nvidia.com/cudnn">cuDNN下载地址</a></p>
+  </li>
+  <li>
+    <p>安装：</p>
+
+    <p>cuDNN安装包为Tar文件：</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ tar -xzvf cudnn-9.0-linux-x64-v7.tgz
+ $ sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+ $ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+ $ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+</code></pre></div>    </div>
+    <p>cuDNN安装包为Debian文件：</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 安装运行库：
+ $ sudo dpkg -i libcudnn7_7.0.3.11-1+cuda9.0_amd64.deb`
+ 安装开发者库：`
+ $ sudo dpkg -i libcudnn7-dev_7.0.3.11-1+cuda9.0_amd64.deb`
+ 安装样例以及用户指南：
+ $ sudo dpkg -i libcudnn7-doc_7.0.3.11-1+cuda9.0_amd64.deb
+</code></pre></div>    </div>
+
+    <p><a href="https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html#install-linux">安装文档地址</a></p>
+  </li>
+  <li>
+    <p>cuDNN样例测试：</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 将cuDNN样例拷贝到一个可操作目录下：
+ $ cp -r /usr/src/cudnn_samples_v7/ $HOME
+ 进入该目录：
+ $ cd $HOME/cudnn_samples_v7/mnistCUDNN
+ 编译mnistCUDNN样例：
+ $ make clean &amp;&amp; make
+ 运行mnistCUDNN样例：
+ $ ./mnistCUDNN
+ 若出现以下情况，则说明cuDNN已经安装完成。
+ Test passed!
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+            </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <footer class="footer" role="contentinfo">
+	<div class="container">
+		<!-- <p class="copyright">Copyright &copy; 2014-2019 <a href="/"><code>Wang Shang</code></a>.</p> -->
+		<p>Powered by <a href="http://jekyllrb.com">Jekyll</a>, themed from <a href="http://lesscss.cn/">Less</a></p>
+	</div>
+</footer>
+
+<script src="/styles/js/jquery.min.js"></script>
+<script src="/styles/js/bootstrap.min.js"></script>
+<script src="/styles/js/holder.min.js"></script>
+<script src="/styles/js/lessismore.js"></script>
+<script src="/styles/js/application.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+  </body>
+
+</html>
